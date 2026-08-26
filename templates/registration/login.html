@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Sign In · Field Log{% endblock %}
+
+{% block content %}
+<div class="auth-wrap">
+  <div class="panel auth-panel">
+    <p class="auth-eyebrow mono">ACCESS REQUIRED</p>
+    <h1>Sign in to your log</h1>
+    <p class="auth-sub">Track what's pending, in progress, and done.</p>
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="field">
+        <label for="id_username">Username</label>
+        {{ form.username }}
+      </div>
+      <div class="field">
+        <label for="id_password">Password</label>
+        {{ form.password }}
+      </div>
+
+      {% if form.errors %}
+        <p class="auth-error">Incorrect username or password. Try again.</p>
+      {% endif %}
+
+      <button type="submit" class="btn-signal">Sign in →</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

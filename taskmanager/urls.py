@@ -23,4 +23,8 @@ urlpatterns = [
 
     # Swagger
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+
+    # Frontend auth
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('', include('tasks.urls_frontend')),
 ]

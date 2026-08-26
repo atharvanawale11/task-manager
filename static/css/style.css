@@ -75,3 +75,68 @@ h1, h2, h3, .brand {
   border-radius: 10px;
   padding: 20px;
 }
+
+/* --- Auth page --- */
+.auth-wrap {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.auth-panel {
+  width: 100%;
+  max-width: 380px;
+  padding: 32px;
+}
+.auth-eyebrow {
+  color: var(--signal);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  margin: 0 0 8px;
+}
+.auth-panel h1 {
+  font-size: 1.5rem;
+  margin: 0 0 6px;
+}
+.auth-sub {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0 0 24px;
+}
+.field { margin-bottom: 16px; }
+.field label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.field input {
+  width: 100%;
+  background: var(--ink);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  color: var(--paper);
+  font-family: 'Inter', sans-serif;
+}
+.field input:focus {
+  outline: none;
+  border-color: var(--signal);
+}
+.auth-error {
+  color: var(--warn);
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+}
+.btn-signal {
+  width: 100%;
+  background: var(--signal);
+  color: var(--ink);
+  border: none;
+  border-radius: 6px;
+  padding: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.btn-signal:hover { opacity: 0.9; }
