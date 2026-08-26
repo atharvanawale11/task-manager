@@ -140,3 +140,78 @@ h1, h2, h3, .brand {
   transition: opacity 0.15s;
 }
 .btn-signal:hover { opacity: 0.9; }
+
+/* --- Dashboard --- */
+.dash-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 24px;
+}
+.dash-head h1 { margin: 0; font-size: 1.7rem; }
+.btn-inline { width: auto; padding: 10px 18px; }
+
+.filter-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.filter-row input, .filter-row select {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--paper);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+}
+.filter-row input { flex: 1; }
+
+.task-list { display: flex; flex-direction: column; gap: 10px; }
+
+.task-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--muted);
+  border-radius: 8px;
+  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.task-card.priority-High { border-left-color: var(--signal); }
+.task-card.priority-Medium { border-left-color: var(--muted); }
+.task-card.priority-Low { border-left-color: var(--border); }
+
+.task-card__title { font-weight: 500; margin-bottom: 4px; }
+.task-card__meta { font-size: 0.78rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+
+.badge-status {
+  font-size: 0.72rem;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-family: 'JetBrains Mono', monospace;
+  margin-right: 12px;
+}
+.badge-Pending { background: rgba(139,147,161,0.15); color: var(--muted); }
+.badge-In-Progress { background: rgba(232,163,61,0.15); color: var(--signal); }
+.badge-Done { background: rgba(79,169,122,0.15); color: var(--ok); }
+
+.task-card__actions button {
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.85rem;
+  margin-left: 10px;
+}
+.task-card__actions button:hover { color: var(--paper); }
+
+textarea, .field select, .field input[type="date"] {
+  width: 100%;
+  background: var(--ink);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  color: var(--paper);
+  font-family: 'Inter', sans-serif;
+}

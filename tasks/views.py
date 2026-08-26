@@ -2,7 +2,8 @@ from rest_framework import viewsets, permissions, filters
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import Task
 from .serializers import TaskSerializer
-
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
 class TaskViewSet(viewsets.ModelViewSet):
     serializer_class = TaskSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -17,3 +18,9 @@ class TaskViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         # Automatically assign the logged-in user when creating a task
         serializer.save(user=self.request.user)
+
+
+
+@login_required
+def dashboard(request):
+    return render(request, 'dashboard.html')

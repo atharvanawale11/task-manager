@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Dashboard · Field Log{% endblock %}
+
+{% block content %}
+<div class="dash-head">
+  <div>
+    <p class="auth-eyebrow mono">TODAY'S LOG</p>
+    <h1>Your tasks</h1>
+  </div>
+  <button class="btn-signal btn-inline" data-bs-toggle="modal" data-bs-target="#taskModal" onclick="document.getElementById('taskId').value=''; document.getElementById('modalTitle').textContent='New entry';">+ New entry</button>
+</div>
+
+<div class="filter-row">
+  <input type="text" id="searchInput" class="mono" placeholder="search entries...">
+  <select id="statusFilter">
+    <option value="">All status</option>
+    <option value="Pending">Pending</option>
+    <option value="In Progress">In Progress</option>
+    <option value="Done">Done</option>
+  </select>
+  <select id="priorityFilter">
+    <option value="">All priority</option>
+    <option value="Low">Low</option>
+    <option value="Medium">Medium</option>
+    <option value="High">High</option>
+  </select>
+</div>
+
+<div id="taskList" class="task-list"></div>
+
+<!-- Add/Edit Modal -->
+<div class="modal fade" id="taskModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content panel">
+      <div class="modal-header" style="border-color: var(--border);">
+        <h5 class="modal-title" id="modalTitle">New entry</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="taskId">
+        <div class="field">
+          <label>Title</label>
+          <input type="text" id="taskTitle" class="mono">
+        </div>
+        <div class="field">
+          <label>Description</label>
+          <textarea id="taskDescription" rows="3"></textarea>
+        </div>
+        <div class="field">
+          <label>Priority</label>
+          <select id="taskPriority">
+            <option value="Low">Low</option>
+            <option value="Medium" selected>Medium</option>
+            <option value="High">High</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Status</label>
+          <select id="taskStatus">
+            <option value="Pending">Pending</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Done">Done</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Due date</label>
+          <input type="date" id="taskDueDate">
+        </div>
+      </div>
+      <div class="modal-footer" style="border-color: var(--border);">
+        <button class="btn-signal" id="saveTaskBtn">Save entry</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/dashboard.js' %}"></script>
+{% endblock %}
