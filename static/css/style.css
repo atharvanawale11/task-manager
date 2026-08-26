@@ -215,3 +215,42 @@ textarea, .field select, .field input[type="date"] {
   color: var(--paper);
   font-family: 'Inter', sans-serif;
 }
+
+/* --- Charts --- */
+.charts-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.chart-panel {
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+}
+.chart-panel canvas {
+  flex: 1;
+  min-height: 0;
+  max-width: 100%;
+}
+.chart-label {
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  margin: 0 0 12px;
+}
+@media (max-width: 700px) {
+  .charts-row { grid-template-columns: 1fr; }
+}
+
+.logout-btn {
+  background: none;
+  border: none;
+  color: var(--signal);
+  font-size: inherit;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: none;
+}
+.logout-btn:hover { text-decoration: underline; }

@@ -13,6 +13,7 @@ async function fetchTasks() {
   allTasks = await res.json();
   renderTasks(allTasks);
   updateTicker(allTasks);
+  renderCharts(allTasks);
 }
 
 function updateTicker(tasks) {
@@ -107,6 +108,72 @@ function applyFilters() {
     (priority === '' || t.priority === priority)
   );
   renderTasks(filtered);
+  renderCharts(filtered); 
 }
 
 fetchTasks();
+
+let statusChart, priorityChart;
+
+function renderCharts(tasks) {
+  const statusCounts = {
+    'Pending': tasks.filter(t => t.status === 'Pending').length,
+    'In Progress': tasks.filter(t => t.status === 'In Progress').length,
+    'Done': tasks.filter(t => t.status === 'Done').length,
+  };
+  const priorityCounts = {
+    'Low': tasks.filter(t => t.priority === 'Low').length,
+    'Medium': tasks.filter(t => t.priority === 'Medium').length,
+    'High': tasks.filter(t => t.priority === 'High').length,
+  };
+
+  const gridColor = 'rgba(231,231,226,0.06)';
+  const textColor = '#8B93A1';
+
+  if (statusChart) statusChart.destroy();
+  statusChart = new Chart(document.getElementById('statusChart'), {
+    type: 'doughnut',
+    data: {
+      labels: Object.keys(statusCounts),
+      datasets: [{
+        data: Object.values(statusCounts),
+        backgroundColor: ['#8B93A1', '#E8A33D', '#4FA97A'],
+        borderColor: '#1B222B',
+        borderWidth: 3,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: { color: textColor, font: { family: 'Inter', size: 11 }, boxWidth: 10 }
+        }
+      }
+    }
+  });
+
+  if (priorityChart) priorityChart.destroy();
+  priorityChart = new Chart(document.getElementById('priorityChart'), {
+    type: 'bar',
+    data: {
+      labels: Object.keys(priorityCounts),
+      datasets: [{
+        data: Object.values(priorityCounts),
+        backgroundColor: ['rgba(139,147,161,0.5)', 'rgba(139,147,161,0.8)', '#E8A33D'],
+        borderRadius: 6,
+        maxBarThickness: 40,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { display: false }, ticks: { color: textColor, font: { family: 'JetBrains Mono', size: 10 } } },
+        y: { beginAtZero: true, grid: { color: gridColor }, ticks: { color: textColor, stepSize: 1, font: { family: 'JetBrains Mono', size: 10 } } }
+      }
+    }
+  });
+}
