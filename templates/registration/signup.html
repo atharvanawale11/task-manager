@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Sign Up · Field Log{% endblock %}
+
+{% block content %}
+<div class="auth-wrap">
+  <div class="panel auth-panel">
+    <p class="auth-eyebrow mono">NEW ACCOUNT</p>
+    <h1>Create your log</h1>
+    <p class="auth-sub">Start tracking pending, active, and finished work.</p>
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="field">
+        <label for="id_username">Username</label>
+        {{ form.username }}
+      </div>
+      <div class="field">
+        <label for="id_password1">Password</label>
+        {{ form.password1 }}
+      </div>
+      <div class="field">
+        <label for="id_password2">Confirm password</label>
+        {{ form.password2 }}
+      </div>
+
+      {% if form.errors %}
+        <p class="auth-error">Please fix the errors below and try again.</p>
+        <ul class="auth-error-list">
+          {% for field in form %}
+            {% for error in field.errors %}
+              <li class="auth-error">{{ error }}</li>
+            {% endfor %}
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      <button type="submit" class="btn-signal">Create account →</button>
+    </form>
+
+    <p class="auth-switch">Already have an account? <a href="{% url 'login' %}">Sign in</a></p>
+  </div>
+</div>
+{% endblock %}

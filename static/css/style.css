@@ -254,3 +254,13 @@ textarea, .field select, .field input[type="date"] {
   text-decoration: none;
 }
 .logout-btn:hover { text-decoration: underline; }
+
+.auth-switch {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 18px;
+}
+.auth-switch a { color: var(--signal); text-decoration: none; }
+.auth-switch a:hover { text-decoration: underline; }
+.auth-error-list { padding-left: 18px; margin: 0 0 12px; }

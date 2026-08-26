@@ -4,6 +4,9 @@ from .models import Task
 from .serializers import TaskSerializer
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import redirect
+from django.contrib.auth import login
 class TaskViewSet(viewsets.ModelViewSet):
     serializer_class = TaskSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -24,3 +27,19 @@ class TaskViewSet(viewsets.ModelViewSet):
 @login_required
 def dashboard(request):
     return render(request, 'dashboard.html')
+
+
+def signup(request):
+    if request.user.is_authenticated:
+        return redirect('dashboard')
+
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)  # log them in right after signup
+            return redirect('dashboard')
+    else:
+        form = UserCreationForm()
+
+    return render(request, 'registration/signup.html', {'form': form})
